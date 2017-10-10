@@ -5,6 +5,10 @@
   background-color: white;
 }
 
+.side-container{
+  width: 50%;
+}
+
 .logoStyle{
   margin: auto 0;
   margin-left: 25px;

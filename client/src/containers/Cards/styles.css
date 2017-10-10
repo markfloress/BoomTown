@@ -1,0 +1,9 @@
+.card-container{
+  width: 75%;
+  margin: 0 auto;
+}
+
+.single-card{
+  width: 33%;
+  margin: 10px;
+}

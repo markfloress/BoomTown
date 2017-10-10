@@ -1,10 +1,4 @@
-import Header from './Header';
+export {default as Header} from './Header'
 
-export default Header;
-
-
-// import LoginContainer from './LoginContainer';
-// import Login from './Login';
-
-// export { Login };
-// export default LoginContainer;
+export { default as RightSide } from './RightSide';
+export { default as LeftSide } from './LeftSide';

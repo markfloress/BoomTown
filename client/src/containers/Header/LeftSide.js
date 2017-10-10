@@ -1,0 +1,35 @@
+import React, { Component } from 'react'
+import logo from '../../images/boomtown-logo.svg'
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+
+export default class LeftSide extends Component {
+  render() {
+    const { names, values, handleChange } = this.props
+
+    return (
+      <div style={{ display: "flex", width: "50%" }}> 
+       <img src={logo} className='logoStyle'></img>
+
+       <SelectField
+          multiple={true}
+          hintText='Filter by Tag'
+          value={values}
+          onChange={handleChange}
+          className='selectField'
+          style={{ width: 300}}>
+            {names.map(name => (
+                <MenuItem
+                    key={name}
+                    insetChildren
+                    checked={values && values.indexOf(name) > -1}
+                    value={name}
+                    primaryText={name}
+                />
+            ))}
+      </SelectField>
+      </div>
+    )
+  }
+}

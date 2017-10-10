@@ -7,14 +7,16 @@ import './index.css';
 import muiTheme from './config/theme';
 
 import Layout from './components/Layout';
+// import Masonry from './components/Masonry';
 import Login from './containers/Login';
-import Header from './containers/Header';
+import CardContainer from './containers/Cards';
+
 
 const Boomtown = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <Layout>
             {/* <Login /> */}
-            <Header/>
+            <CardContainer/>
         </Layout>
     </MuiThemeProvider>
 
