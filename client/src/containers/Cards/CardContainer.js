@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import Gravatar from 'react-gravatar';
+import Masonry from 'react-masonry-component';
 import './styles.css';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton'
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 
@@ -27,34 +29,38 @@ class CardContainer extends Component {
           tags: item.tags,
           title: item.title,
           user: users.find(user => user.id === item.itemOwner),
-          // splitTags: tags.split(", ")
         }
       })
 
 
-      let List = itemWithUser.map((item, x) => {
+      let List = itemWithUser.map((item) => {
         return(
-            <Card className='single-card'>
+          <Masonry
+          
+          >
+
+            <Card className="single-card">
               <CardMedia 
-                overlay={ !item.available ? null : <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
+                overlay={ !item.available && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
               >
                 <img src={item.imageUrl} alt="Item Image" />
               </CardMedia>
               <CardHeader
                 title={item.user.fullName}
                 subtitle="{users.fullName}"
-                avatar= ""
+                avatar={<Gravatar email={item.user.email} style={{ borderRadius: "50%"}}/>}
               />
-              <CardTitle title={item.title} subtitle={item.tags} />
+              <CardTitle title={item.title} subtitle={item.tags.join(", ")} />
               <CardText>
                 {item.description} 
               </CardText>
               <CardActions>
-                {!item.borrower ? null : <RaisedButton label="Borrow" 
+                {!item.borrower && <RaisedButton label="Borrow" 
                 primary buttonStyle={{ backgroundColor: 'gray' }} 
                 labelStyle={{ textTransform: "uppercase" }}/>}
               </CardActions>
             </Card>
+          </Masonry>
         )
       })
       this.setState({data: List})})
