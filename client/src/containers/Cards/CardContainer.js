@@ -4,7 +4,7 @@ import Masonry from 'react-masonry-component';
 import './styles.css';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import {CardItem} from '../../components/cards'
 
 
 class CardContainer extends Component {
@@ -20,61 +20,26 @@ class CardContainer extends Component {
       const [items, users] = data
       const itemWithUser = items.map((item) => {
         return {
-          available: item.available,
-          borrower: item.borrower,
-          createdOn: item.createdOn,
-          description: item.description,
+          ...item,
           key: item.id,
-          imageUrl: item.imageUrl,
-          tags: item.tags,
-          title: item.title,
           user: users.find(user => user.id === item.itemOwner),
         }
       })
-
-
-      let List = itemWithUser.map((item) => {
-        return(
-          <Masonry
-          
-          >
-
-            <Card className="single-card">
-              <CardMedia 
-                overlay={ !item.available && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
-              >
-                <img src={item.imageUrl} alt="Item Image" />
-              </CardMedia>
-              <CardHeader
-                title={item.user.fullName}
-                subtitle="{users.fullName}"
-                avatar={<Gravatar email={item.user.email} style={{ borderRadius: "50%"}}/>}
-              />
-              <CardTitle title={item.title} subtitle={item.tags.join(", ")} />
-              <CardText>
-                {item.description} 
-              </CardText>
-              <CardActions>
-                {!item.borrower && <RaisedButton label="Borrow" 
-                primary buttonStyle={{ backgroundColor: 'gray' }} 
-                labelStyle={{ textTransform: "uppercase" }}/>}
-              </CardActions>
-            </Card>
-          </Masonry>
-        )
-      })
-      this.setState({data: List})})
+      this.setState({data: itemWithUser})})
   }
-
-
-
-
+  
   render () {
 
    return (
-     <div className='card-container'>
-       {this.state.data}
+     <div className='cards-overview'>
+      <Masonry>
+       {this.state.data.map((item) => 
+        <div key={item.id} className="singlecard-container">
+          <CardItem data={item}/>
+        </div>)}
+      </Masonry>
     </div>
+
    )
  }
 }

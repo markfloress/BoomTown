@@ -1,9 +1,8 @@
-.card-container{
-  width: 75%;
+.cards-overview{
+  width: 80%;
   margin: 0 auto;
 }
 
-.single-card{
+.singlecard-container{
   width: 33%;
-  margin: 10px;
 }
