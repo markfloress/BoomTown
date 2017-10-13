@@ -4,7 +4,7 @@ import './styles.css';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class CardItem extends Component {
+class ProfileCard extends Component {
   render() {
     const {available, borrower, createdOn, description, key, imageUrl, tags, title, user} = this.props.data
 
@@ -34,4 +34,4 @@ class CardItem extends Component {
   }
 }
 
-export default CardItem;
+export default ProfileCard;
