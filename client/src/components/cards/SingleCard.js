@@ -6,20 +6,20 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class CardItem extends Component {
   render() {
-    const {available, borrower, createdOn, description, key, imageUrl, tags, title, user} = this.props.data
-    const {fullName, email} = user[0]
-    console.log("hi", this.props.data.user)
+    const {available, borrower, created, description, key, imageurl, tags, title, user} = this.props.data
+    const {fullname, email} = user[0]
+    console.log("hi", this.props.data)
 
     return (
         <Card className="single-card">
         <CardMedia 
           overlay={ !available && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
         >
-          <img src={imageUrl} alt="Item Image" />
+          <img src={imageurl} alt="Item Image" />
         </CardMedia>
         <CardHeader
-          title={fullName}
-          subtitle={fullName}
+          title={fullname}
+          subtitle={created}
           avatar={<Gravatar email={email} style={{ borderRadius: "50%"}}/>}
         />
         <CardTitle title={title} subtitle={tags.join(", ")} />

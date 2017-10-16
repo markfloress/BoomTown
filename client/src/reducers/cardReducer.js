@@ -4,7 +4,6 @@ const initialState = {
   errorMsg: {},
   isLoading: false,
   items: [],
-  users: []
 }
 
 // HELPER
@@ -13,7 +12,7 @@ const mergeUserItems = (users, items) => {
   return users.map(user => {
     return {
       ...user,
-      items : items.filter(item => item.itemOwner === user.id)
+      items : items.filter(item => item.itemowner === user.id)
     }
   })
 }
@@ -22,7 +21,7 @@ const mergeItemUsers = (users, items) => {
   return items.map(item => {
     return {
       ...item,
-      user: users.filter(user => user.id === item.itemOwner)
+      user: users.filter(user => user.id === item.itemowner)
     }
   })
 }

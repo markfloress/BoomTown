@@ -31,6 +31,7 @@ class CardContainer extends Component {
   
   render () {
     const itemList = this.props.items
+    console.log('test', this.props)
     
    return (
      <div className='cards-overview'>
