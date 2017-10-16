@@ -17,16 +17,16 @@ class Profile extends Component {
   render () {  
     const itemList = this.props.items
     const link = window.location.href
-    this.props.users.map((user) => {
-    const blah = link.match(user.id)
+    // this.props.users.map((user) => {
+    // const blah = link.match(user.id)
     
-      if (user.id === blah) {
-        console.log("works")
-        // return user
-      } else {
-        console.log("fail", blah.index)
-      }
-    })
+    //   if (user.id === blah) {
+    //     console.log("works")
+    //     // return user
+    //   } else {
+    //     console.log("fail", blah.index)
+    //   }
+    // })
 
    return (
      <div className='cards-overview'>
