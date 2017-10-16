@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Masonry from 'react-masonry-component';
 import {CardItem, ProfileCard} from '../../components/cards'
+import { connect } from 'react-redux'
+import { getCardItems } from '../../actions'
 
 
 class Profile extends Component {
@@ -9,28 +11,21 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    const url = ['http://localhost:3001/items', 'http://localhost:3001/users'] 
-    
-    Promise.all(url.map(url => fetch(url).then(response => response.json())))
-    .then(data => { 
-      const [items, users] = data
-      const itemWithUser = items.map((item) => {
-        return {
-          ...item,
-          key: item.id,
-          user: users.find(user => user.id === item.itemOwner),
-        }
-      })
-      this.setState({data: itemWithUser})})
+    this.props.getCardItems()
   }
+  
   render () {  
+    const itemList = this.props.items
+    const testing = window.location.href
+    console.log("testing", testing)
+
    return (
      <div className='cards-overview'>
+       <ProfileCard data={this.props.users}/>
       <Masonry>
-       {this.state.data.map((item) => 
-        <div key={item.id} className="singlecard-container">
-          <CardItem data={item}/>
-          {/* <ProfileCard data={item}/> */}
+      {itemList.map((x) => 
+        <div key={x.id} className="singlecard-container">
+          <CardItem data={x}/>
         </div>)}
       </Masonry>
     </div>
@@ -38,4 +33,4 @@ class Profile extends Component {
  }
 }
 
-export default Profile;
+export default connect((store) => store.users, {getCardItems})(Profile);

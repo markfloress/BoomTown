@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
-import Gravatar from 'react-gravatar';
-import './styles.css';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
+import Gravatar from 'react-gravatar'
+import './styles.css'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import RaisedButton from 'material-ui/RaisedButton'
+import moment from 'moment'
 
 class CardItem extends Component {
   render() {
-    const {available, borrower, created, description, key, imageurl, tags, title, user} = this.props.data
+    const {available, borrower, created, description, key, imageurl, tags, itemowner, title, user} = this.props.data
     const {fullname, email} = user[0]
-    console.log("hi", this.props.data)
+    const createdDate = moment(created).fromNow()
 
     return (
         <Card className="single-card">
@@ -17,11 +19,13 @@ class CardItem extends Component {
         >
           <img src={imageurl} alt="Item Image" />
         </CardMedia>
-        <CardHeader
+        <Link to={`/profile/${itemowner}`}>
+          <CardHeader
           title={fullname}
-          subtitle={created}
-          avatar={<Gravatar email={email} style={{ borderRadius: "50%"}}/>}
-        />
+          subtitle={createdDate}
+          avatar={<Gravatar email={email} style={{ borderRadius: "50%" }}/>}
+          />
+        </Link>
         <CardTitle title={title} subtitle={tags.join(", ")} />
         <CardText>
           {description} 
@@ -36,4 +40,4 @@ class CardItem extends Component {
   }
 }
 
-export default CardItem;
+export default CardItem

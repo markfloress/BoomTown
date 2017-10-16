@@ -6,14 +6,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class ProfileCard extends Component {
   render() {
-    const {available, borrower, createdOn, description, key, imageUrl, tags, title, user} = this.props.data
 
     return (
       <Card className="profile-card">
         <CardHeader
-          avatar={<Gravatar email={user.email} style={{ borderRadius: "50%"}}/>}
+          avatar={<Gravatar email='{email}' style={{ borderRadius: "50%"}}/>}
         />
-        <CardTitle title={title} subtitle={tags.join(", ")} />
+        <CardTitle title='{title}' subtitle='{tags.join(", ")}' />
       </Card>
     )
   }

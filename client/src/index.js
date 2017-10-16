@@ -25,7 +25,7 @@ const Boomtown = () => (
                 <Switch>
                     {/* <Login /> */}
                     <Route exact path='/' component={CardContainer}/>
-                    <Route exact path='/profile' component={Profile}/>
+                    <Route path='/profile/:id' component={Profile}/>                    
                     <Route component={CantBeFound}/>
                 </Switch>   
             </Layout>
