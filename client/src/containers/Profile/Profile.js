@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import Gravatar from 'react-gravatar';
 import Masonry from 'react-masonry-component';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import {CardItem} from '../../components/cards'
+import {CardItem, ProfileCard} from '../../components/cards'
 
 
 class Profile extends Component {
@@ -26,15 +23,14 @@ class Profile extends Component {
       })
       this.setState({data: itemWithUser})})
   }
-  
-  render () {
-
+  render () {  
    return (
      <div className='cards-overview'>
       <Masonry>
        {this.state.data.map((item) => 
         <div key={item.id} className="singlecard-container">
           <CardItem data={item}/>
+          {/* <ProfileCard data={item}/> */}
         </div>)}
       </Masonry>
     </div>

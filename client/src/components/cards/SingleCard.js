@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 class CardItem extends Component {
   render() {
     const {available, borrower, createdOn, description, key, imageUrl, tags, title, user} = this.props.data
+    // console.log("hi", this.props.data)
 
     return (
         <Card className="single-card">
@@ -16,11 +17,11 @@ class CardItem extends Component {
           <img src={imageUrl} alt="Item Image" />
         </CardMedia>
         <CardHeader
-          title={user.fullName}
+          title={this.props.data.fullName}
           subtitle="{users.fullName}"
-          avatar={<Gravatar email={user.email} style={{ borderRadius: "50%"}}/>}
+          avatar={<Gravatar email={this.props.data.email} style={{ borderRadius: "50%"}}/>}
         />
-        <CardTitle title={title} subtitle={tags.join(", ")} />
+        {/* <CardTitle title={title} subtitle={tags.join(", ")} /> */}
         <CardText>
           {description} 
         </CardText>

@@ -7,10 +7,6 @@ import React, {Component} from 'react';
 
 
 class CantBeFound extends Component {
-  state = {
-    data: [],
-  };
-  
   render () {
    return (
      <div>
