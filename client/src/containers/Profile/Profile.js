@@ -16,8 +16,17 @@ class Profile extends Component {
   
   render () {  
     const itemList = this.props.items
-    const testing = window.location.href
-    console.log("testing", testing)
+    const link = window.location.href
+    this.props.users.map((user) => {
+    const blah = link.match(user.id)
+    
+      if (user.id === blah) {
+        console.log("works")
+        // return user
+      } else {
+        console.log("fail", blah.index)
+      }
+    })
 
    return (
      <div className='cards-overview'>

@@ -12,26 +12,11 @@ class CardContainer extends Component {
   };
 
   componentDidMount() {
-
     this.props.getCardItems()
-    // const url = ['http://localhost:3001/items', 'http://localhost:3001/users'] 
-    
-    // Promise.all(url.map(url => fetch(url).then(response => response.json())))
-    // .then(data => { 
-    //   const [items, users] = data
-    //   const itemWithUser = items.map((item) => {
-    //     return {
-    //       ...item,
-    //       key: item.id,
-    //       user: users.find(user => user.id === item.itemOwner),
-    //     }
-    //   })
-    //   this.setState({data: itemWithUser})})
   }
   
   render () {
     const itemList = this.props.items
-    console.log('test', this.props)
     
    return (
      <div className='cards-overview'>
