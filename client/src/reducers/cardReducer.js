@@ -2,7 +2,9 @@
 const initialState = {
   users: [],
   errorMsg: {},
-  isLoading: false
+  isLoading: false,
+  items: [],
+  users: []
 }
 
 // HELPER

@@ -30,14 +30,12 @@ class CardContainer extends Component {
   }
   
   render () {
-    const itemList = this.props.items    
-    // console.log("pops", this.props.items.length)
-    console.log("test", itemList)    
+    const itemList = this.props.items
     
    return (
      <div className='cards-overview'>
       <Masonry>
-       {itemList === undefined ? null : itemList.map((x) => 
+       {itemList.map((x) => 
         <div key={x.id} className="singlecard-container">
           <CardItem data={x}/>
         </div>)}
