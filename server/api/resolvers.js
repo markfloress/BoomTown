@@ -38,13 +38,13 @@ const resolvers = {
 
 
   User: {
-    async items(users) {
+    async items(user) {
       const response = await fetch(`${url}items/?itemowner=${user.id}`)
       const itemown = await response.json()
       return itemown
     },
 
-    async borroweditems(users) {
+    async borroweditems(user) {
       const response = await fetch(`${url}items/?borrower=${user.id}`)
       const borrowed = await response.json()
       return borrowed
