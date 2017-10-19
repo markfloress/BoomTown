@@ -1,65 +1,72 @@
 import fetch from 'node-fetch'
 
+const url = 'http://localhost:3001/'
+
 const resolvers = {
   Query: {        
-    movies() {     
-      return fetch(`http://localhost:40000`)
+    items() {     
+      return fetch(`${url}items`)
       .then(response => response.json())
       .catch(errors => console.log(errors));
     },
 
-    movie(root, { id }) {         
-      return fetch(`http://localhost:40000${id}`)     
+    item(root, { id }) {         
+      return fetch(`${url}items/${id}`)     
       .then(response => response.json())
       .catch(errors => console.log(errors));
     },
 
 
+///////
 
-    people() {
-      return data.people
+
+    users() {
+      return fetch(`${url}users`)
+      .then(response => response.json())
+      .catch(errors => console.log(errors));
     },
 
-    person(root, { id }) {
-      return data.people.find(people => people.id === parseInt(id))
+    user(root, { id }) {
+      return fetch(`${url}users/${id}`)     
+      .then(response => response.json())
+      .catch(errors => console.log(errors));
     },
   },
 
 
+///////////////////////
 
 
-
-  Movie: {
-    director(movie) {
-      if (!movie.director) return null               // only if field is nullable or doesnt have " ! "
-      return data.people.find(person => person.id === movie.director)
+  User: {
+    async items(users) {
+      const response = await fetch(`${url}items/?itemowner=${user.id}`)
+      const itemown = await response.json()
+      return itemown
     },
 
-    stars(movie) {
-      return data.people.filter(person => (
-        person.filmography.find(film => (
-          film === movie.id && person.id !== movie.director
-        ))
-      ))
-
-
-      // if (!movie.director) return null;                                     // for boomtown, itemowners to items
-      // return fetch(`http://somemovieapi.com/people/${movie.director}`)
-      //   .then(response => response.json())
-      //   .catch(errors => console.log(errors));
+    async borroweditems(users) {
+      const response = await fetch(`${url}items/?borrower=${user.id}`)
+      const borrowed = await response.json()
+      return borrowed
     }
   },
 
 
+/////////////////////////
 
 
-  Person: {
-    filmography(person) {
-      return data.movies.filter(movie => (
-        person.filmography.find(film => (
-          film === movie.id
-        ))
-      ))
+  Item: {
+    itemowner(item) { 
+      return fetch(`${url}users/${item.itemowner}`)
+        .then(response => response.json())
+        .catch(errors => console.log(errors)); 
+    },
+
+    borrower(item) {
+      if (!item.borrower) return null;   
+        return fetch(`${url}users/${item.borrower}`)
+        .then(response => response.json())
+        .catch(errors => console.log(errors)); 
     }
   }
 }

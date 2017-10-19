@@ -3,25 +3,25 @@ import resolvers from './resolvers'
 
 const typeDefs = `
 
-  type Items {
+  type Item {
     id: ID!
     title: String!
     description: String
     imageurl: String
-    tags: [""]
-    itemowner: Users!
+    tags: [String]
+    itemowner: User!
     created: String!
     available: Boolean!
     borrower: User
   }
 
-  type Users {
+  type User {
     id: ID!
     email: String!
     fullname: String!
     bio: String
-    items: [Items]
-    borroweditems: [Items]
+    items: [Item]
+    borroweditems: [Item]
   }
 
 
@@ -29,10 +29,10 @@ const typeDefs = `
 
 
   type Query {
-    items: [Items]
-    item(id: ID!): Items
-    users: [Users]
-    user(id: ID!): Users
+    items: [Item]
+    item(id: ID!): Item
+    users: [User]
+    user(id: ID!): User
   }
 
 `
