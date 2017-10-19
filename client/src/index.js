@@ -1,9 +1,10 @@
 import React from 'react';
-import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
+import { ApolloProvider } from 'react-apollo';
+import client from './config/apolloClient';
 
 import './index.css';
 import muiTheme from './config/theme';
@@ -18,7 +19,7 @@ import configStore from './configStore'
 const store = configStore()
 
 const Boomtown = () => (
-<Provider store={store}>
+<ApolloProvider store={store} client={client}>
     <MuiThemeProvider muiTheme={muiTheme}>
         <Router>
             <Layout>
@@ -31,7 +32,7 @@ const Boomtown = () => (
             </Layout>
         </Router>
     </MuiThemeProvider>
-</Provider>
+</ApolloProvider>
 );
 
 ReactDOM.render(<Boomtown />, document.getElementById('root'));
