@@ -24,10 +24,6 @@ const typeDefs = `
     borroweditems: [Item]
   }
 
-
-
-
-
   type Query {
     items: [Item]
     item(id: ID!): Item
@@ -35,7 +31,17 @@ const typeDefs = `
     user(id: ID!): User
   }
 
-`
+  type Mutation {
+    addItem (
+      title: String!
+      description: String
+      imageurl: String
+      tags: [String]
+      itemowner: ID!
+    ): Item
+  }
+
+`;
 
 export default makeExecutableSchema({
   typeDefs,

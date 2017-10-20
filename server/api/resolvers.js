@@ -1,72 +1,62 @@
-import fetch from 'node-fetch'
+// import fetch from 'node-fetch'
+// const url = 'http://localhost:3001/'
 
-const url = 'http://localhost:3001/'
+import { getItems, getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './jsonHelpers'
 
 const resolvers = {
-  Query: {        
-    items() {     
-      return fetch(`${url}items`)
-      .then(response => response.json())
-      .catch(errors => console.log(errors));
+  Query: {
+    items() {
+      return getItems()
     },
 
-    item(root, { id }) {         
-      return fetch(`${url}items/${id}`)     
-      .then(response => response.json())
-      .catch(errors => console.log(errors));
+    item(root, { id }) {
+      return getItem(id)
     },
 
-
-///////
-
+    ///////
 
     users() {
-      return fetch(`${url}users`)
-      .then(response => response.json())
-      .catch(errors => console.log(errors));
+      return getUsers()
     },
 
     user(root, { id }) {
-      return fetch(`${url}users/${id}`)     
-      .then(response => response.json())
-      .catch(errors => console.log(errors));
+      return getUser(id)      
     },
   },
 
 
-///////////////////////
+  ///////////////////////
 
 
   User: {
-    async items(user) {
-      const response = await fetch(`${url}items/?itemowner=${user.id}`)
-      const itemown = await response.json()
-      return itemown
+    items(user) {
+      if (!user.id) return null
+      return ownedItems(user.id)
     },
 
-    async borroweditems(user) {
-      const response = await fetch(`${url}items/?borrower=${user.id}`)
-      const borrowed = await response.json()
-      return borrowed
+    borroweditems(user) {
+      if (!user.id) return null      
+      return borrowedItems(user.id)
     }
   },
 
 
-/////////////////////////
+  /////////////////////////
 
 
   Item: {
-    itemowner(item) { 
-      return fetch(`${url}users/${item.itemowner}`)
-        .then(response => response.json())
-        .catch(errors => console.log(errors)); 
+    itemowner(item) {
+      return itemOwner(item)
     },
 
     borrower(item) {
-      if (!item.borrower) return null;   
-        return fetch(`${url}users/${item.borrower}`)
-        .then(response => response.json())
-        .catch(errors => console.log(errors)); 
+      return itemBorrower(item)
+    }
+  },
+
+  Mutation: {
+    addItem(root, {title, description, imageurl, tags, itemowner}) {
+      return createItem(title, description, imageurl, tags, itemowner)
     }
   }
 }
