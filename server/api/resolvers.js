@@ -9,8 +9,9 @@ const resolvers = {
       return getItems()
     },
 
-    item(root, { id }) {
-      return getItem(id)
+    item(root, { id }, context) {
+      // return getItem(id)
+      return context.loaders.singleItem.load(id)
     },
 
     ///////
@@ -19,8 +20,9 @@ const resolvers = {
       return getUsers()
     },
 
-    user(root, { id }) {
-      return getUser(id)      
+    user(root, { id }, context) {
+      // return getUser(id)
+      return context.loaders.singleUser.load(id)
     },
   },
 
@@ -29,14 +31,16 @@ const resolvers = {
 
 
   User: {
-    items(user) {
+    items(user, args, context) {
       if (!user.id) return null
-      return ownedItems(user.id)
+      // return ownedItems(user.id)
+      return context.loaders.userownedItems.load(user.id)
     },
 
-    borroweditems(user) {
+    borroweditems(user, args, context) {
       if (!user.id) return null      
-      return borrowedItems(user.id)
+      // return borrowedItems(user.id)
+      return context.loaders.userborrowedItems.load(user.id)
     }
   },
 
@@ -46,10 +50,12 @@ const resolvers = {
 
   Item: {
     itemowner(item) {
+      if (!item.itemowner) return null      
       return itemOwner(item)
     },
 
     borrower(item) {
+      if (!item.borrower) return null      
       return itemBorrower(item)
     }
   },

@@ -34,14 +34,12 @@ export const getUser = (id) => {
 ///// User Helpers
 
 export const ownedItems = async (id) => {
-  if (!user.id) return null
   const response = await fetch(`${url}items/?itemowner=${id}`)
   const itemown = await response.json()
   return itemown
 }
 
 export const borrowedItems = async (id) => {
-  if (!user.id) return null
   const response = await fetch(`${url}items/?borrower=${id}`)
   const borrowed = await response.json()
   return borrowed
@@ -52,14 +50,12 @@ export const borrowedItems = async (id) => {
 ///// Item Helpers
 
 export const itemOwner = (item) => {
-  if (!item.itemowner) return null
   return fetch(`${url}users/${item.itemowner}`)
     .then(response => response.json())
     .catch(errors => console.log(errors))
 }
 
 export const itemBorrower = (item) => {
-  if (!item.borrower) return null
   return fetch(`${url}users/${item.borrower}`)
     .then(response => response.json())
     .catch(errors => console.log(errors))
