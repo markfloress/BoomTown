@@ -13,6 +13,7 @@ import Layout from './components/Layout';
 import Login from './containers/Login';
 import CardContainer from './containers/Cards';
 import { Profile } from './containers/Profile';
+import { Share } from './containers/Share';
 import { CantBeFound } from './containers/CantBeFound';
 import configStore from './configStore'
 
@@ -26,9 +27,10 @@ const Boomtown = () => (
                 <Switch>
                     {/* <Login /> */}
                     <Route exact path='/' component={CardContainer}/>
-                    <Route path='/profile/:id' component={Profile}/>                    
+                    <Route path='/profile/:id' component={Profile}/>
+                    <Route path='/share' component={Share}/>
                     <Route component={CantBeFound}/>
-                </Switch>   
+                </Switch>
             </Layout>
         </Router>
     </MuiThemeProvider>

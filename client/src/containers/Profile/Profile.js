@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { getCardItems } from '../../actions'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import './styles.css'
+
 
 
 class Profile extends Component {
@@ -24,7 +26,7 @@ class Profile extends Component {
 
     return (
       <div className='cards-overview'>
-        <ProfileCard data={singleUser ? singleUser: {} } />
+        <ProfileCard className="testt1" data={singleUser ? singleUser: {} } />
         <Masonry>
           {userItems.map((x) => {
             <div key={x.id} className="singlecard-container">
