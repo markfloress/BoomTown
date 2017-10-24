@@ -14,6 +14,7 @@ const Layout = ({ children }) => (
             {children}
         </div>
         {/* And a footer here, but not on the login route... */}
+        <p className='footer-text'> &#169; 2017 Boomtown Corp. All Rights Reserved </p>
     </div>
 );
 

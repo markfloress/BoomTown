@@ -10,3 +10,7 @@
   width: 100%;
   flex:1;
 }
+
+.footer-text{
+  margin: 20px auto 10px auto;
+}

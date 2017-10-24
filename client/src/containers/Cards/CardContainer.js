@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
-import Masonry from 'react-masonry-component';
-import './styles.css';
+import React, {Component} from 'react'
+import Masonry from 'react-masonry-component'
+import './styles.css'
 import {CardItem} from '../../components/cards'
 import { connect } from 'react-redux'
 import { getCardItems } from '../../actions'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 
 class CardContainer extends Component {
@@ -21,6 +23,9 @@ class CardContainer extends Component {
           <CardItem data={x}/>
         </div>)}
       </Masonry>
+      <FloatingActionButton secondary={true} className='share-button'>
+        <ContentAdd />
+      </FloatingActionButton>
     </div>
 
    )
@@ -49,8 +54,8 @@ const fetchItems = gql `
   }
 `
 
-// export default connect((store) => store.users, {getCardItems})(CardContainer);
+// export default connect((store) => store.users, {getCardItems})(CardContainer)
 
 
-export default graphql(fetchItems)(CardContainer);
+export default graphql(fetchItems)(CardContainer)
 // fetch movies will be the query function replacing render and return and input them to moviesList
