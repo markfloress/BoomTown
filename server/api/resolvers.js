@@ -1,7 +1,7 @@
 // import fetch from 'node-fetch'
 // const url = 'http://localhost:3001/'
 
-import { getItems, getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './jsonHelpers'
+import { getItems, getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
 
 const resolvers = {
   Query: {
