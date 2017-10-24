@@ -12,7 +12,6 @@ class CardContainer extends Component {
   render () {
     if (this.props.data.loading) return null
     const itemList = this.props.data.items
-    console.log('test', this.props.data.items)
     
    return (
      <div className='cards-overview'>
@@ -27,19 +26,6 @@ class CardContainer extends Component {
    )
  }
 }
-
-
-// const CardContainer = ({ data }) => (
-//   console.log(data)
-//   // <div className='cards-overview'>
-//   //   <Masonry>
-//   //     {data.map((x) => 
-//   //       <div key={x.id} className="singlecard-container">
-//   //       <CardItem data={x}/>
-//   //     </div>)}
-//   //   </Masonry>
-//   // </div>
-// );
 
 const fetchItems = gql `
   query fetchItems {
@@ -61,9 +47,6 @@ const fetchItems = gql `
       }
     }
   }
-
-
-
 `
 
 // export default connect((store) => store.users, {getCardItems})(CardContainer);

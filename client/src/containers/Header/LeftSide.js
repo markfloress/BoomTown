@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import logo from '../../images/boomtown-logo.svg'
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import { Link } from 'react-router-dom'
+
 
 
 export default class LeftSide extends Component {
@@ -10,7 +12,8 @@ export default class LeftSide extends Component {
 
     return (
       <div style={{ display: "flex", width: "50%" }}> 
-       <img src={logo} className='logoStyle'></img>
+       <Link to={`/`}><img src={logo} className='logoStyle'></img></Link>
+
 
        <SelectField
           multiple={true}

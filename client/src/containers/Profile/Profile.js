@@ -3,45 +3,65 @@ import Masonry from 'react-masonry-component';
 import { CardItem, ProfileCard } from '../../components/cards'
 import { connect } from 'react-redux'
 import { getCardItems } from '../../actions'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 
 class Profile extends Component {
-  state = {
-    data: [],
-  };
-
-  componentDidMount() {
-    this.props.getCardItems()
-  }
+  // componentDidMount() {
+  //   this.props.getCardItems()
+  // }
 
   render() {
-    let dataSet = {}
-    const itemList = this.props.users.find(x => {
-      if (x.id === this.props.match.params.id) {
-        return dataSet = {
-          ...x
-        }
-      }
-      return
+    if (this.props.data.loading) return null    
+    const singleUser = this.props.data.user
+    const userItems = singleUser.items
+    console.log("profile", userItems)    
+
+    singleUser.items.map((x) => {
+      console.log('single', x)
     })
 
     return (
       <div className='cards-overview'>
-        <ProfileCard data={itemList ? itemList: {} } />
+        <ProfileCard data={singleUser ? singleUser: {} } />
         <Masonry>
-          {/* {itemList.map((userItem) => {
-            if (userItem.id === this.props.match.params.id) {
-              <div key={userItem.id} className="singlecard-container">
-                <CardItem data={userItem} />
-              </div>
-            }
-          }
-          )} */}
-          {/* {console.log("shiet", itemList.item)} */}
+          {userItems.map((x) => {
+            <div key={x.id} className="singlecard-container">
+              <CardItem data={x}/>
+            </div>
+          })}
         </Masonry>
       </div>
     )
   }
 }
 
-export default connect((store) => store.users, { getCardItems })(Profile);
+
+const fetchUsers = gql `
+query fetchUsers($id: ID!) {
+  user(id: $id){
+    fullname
+    id
+    email
+    bio
+    borroweditems{
+      title
+    }
+    items{
+      title
+    }
+  }
+}
+
+
+`
+
+// export default connect((store) => store.users, { getCardItems })(Profile);
+export default graphql(fetchUsers, {
+  options: ownProps => ({
+    variables: {
+      id: ownProps.match.params.id
+    }
+  })
+})(Profile);
