@@ -3,11 +3,12 @@
 
 import { getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
 import { getItems } from './resources/pg-resources'
+import {database} from '../index'
 
 const resolvers = {
   Query: {
     items() {
-      return getItems()
+      return database.getItems()
     },
 
     item(root, { id }, context) {

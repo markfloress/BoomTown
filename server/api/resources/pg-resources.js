@@ -12,20 +12,11 @@ module.exports = function(app) {
     connectionTimeoutMillis: 2000,
   })
 
-  return pgClient
+  return {
+    getItems() {
+      return pgClient.query("select * from items")
+      .then(response => response.rows)
+      .catch(errors => console.log(errors))
+    }
+  }
 }
-
-
-
-
-
-
-
-// getItems() {
-//   app.get('/test', async (req, res) =>{
-//     const time = await database.query('SELECT NOW() as now')
-//     res.send(time.rows[0]).end()
-//   })
-//   // .then(response => response.json())
-//   // .catch(errors => console.log(errors))
-// }
