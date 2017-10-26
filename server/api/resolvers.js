@@ -1,7 +1,8 @@
 // import fetch from 'node-fetch'
 // const url = 'http://localhost:3001/'
 
-import { getItems, getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
+import { getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
+import { getItems } from './resources/pg-resources'
 
 const resolvers = {
   Query: {

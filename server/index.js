@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import initConfigs from './configs'
-import initPostgres from './api/pg-resources'
+import initPostgres from './api/resources/pg-resources'
 
 import schema from './api/schema'
 import cors from 'cors'
@@ -23,8 +23,8 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { loade
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 app.get('/time', async (req, res) => {
-  const time = await database.query('SELECT NOW() as now')
-  res.send(time.rows[0]).end()
+  const time = await database.query('select * from tags')
+  res.send(time).end()
 })
 
 app.listen(GQL_PORT, () => {
