@@ -6,14 +6,23 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class ProfileCard extends Component {
   render() {
-    const { bio, email } = this.props.data
+    const { fullname, bio, email, items, borroweditems } = this.props.data
+
+    const ownedItemCount = items.length
+    const borrowedItemCount = borroweditems.length
+
+    console.log('counters', ownedItemCount, borrowedItemCount)
 
     return (
       <Card className="profile-card">
-        <CardHeader
-          avatar={<Gravatar email={email} style={{ borderRadius: "50%"}}/>}
-        />
-        <CardTitle title={bio} subtitle='{tags.join(", ")}' />
+        <div className='profCard-header'>
+          <CardHeader avatar={<Gravatar email={email} style={{ borderRadius: "50%", width: '90%', height: '90%' }}/>} style={{ marginLeft: '30px'  }}/>
+        </div>
+        <div className='profCard-counter'>
+          <CardTitle title={fullname} subtitle={bio}/>          
+          <p>items owned: <span>{ownedItemCount}</span></p>
+          <p>items borrowed: <span>{borrowedItemCount}</span></p>
+        </div>
       </Card>
     )
   }

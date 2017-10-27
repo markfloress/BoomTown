@@ -4,8 +4,31 @@
 
 .profile-card{
   width: 80%;
+  margin: 0 auto;
 }
 
 .profile-card.CardHeader{
   display: inline;
+}
+
+.profCard-header{
+  height: 100%;
+  display: inline-block;
+  top: 0;
+}
+
+.profCard-counter{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 10px;
+  text-transform: uppercase;
+  margin-left: 30px;
+}
+
+.profCard-counter p{
+  padding-left: 16px;
+}
+
+.profCard-counter p span{
+  padding-left: 5px;
 }

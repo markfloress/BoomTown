@@ -24,6 +24,7 @@ module.exports = function(app) {
       .then(response => response.rows)
       .catch(errors => console.log(errors))
     },
+    
     getTag(itemID){
       return pgClient.query(`select tags.tagid, tags.title from tags join itemtags on tags.tagid = itemtags.tagid where itemtags.itemid = ${itemID}`)
       .then(resp => resp.rows)

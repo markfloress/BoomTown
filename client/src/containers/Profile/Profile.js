@@ -6,7 +6,6 @@ import { getCardItems } from '../../actions'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-
 class Profile extends Component {
   render() {
     if (this.props.data.loading) return null;    
