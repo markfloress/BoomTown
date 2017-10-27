@@ -8,27 +8,24 @@ import gql from 'graphql-tag'
 
 
 class Profile extends Component {
-  // componentDidMount() {
-  //   this.props.getCardItems()
-  // }
-
   render() {
-    if (this.props.data.loading) return null    
+    if (this.props.data.loading) return null;    
     const singleUser = this.props.data.user
     const userItems = singleUser.items
-    console.log("profile", userItems)    
-
-    singleUser.items.map((x) => {
-      console.log('single', x)
-    })
+    // console.log("profile", userItems)    
+    // singleUser.items.map((x) => {
+    //   console.log('single', x)
+    // })
 
     return (
       <div className='cards-overview'>
         <ProfileCard data={singleUser ? singleUser: {} } />
         <Masonry>
           {userItems.map((x) => {
-            <div key={x.id} className="singlecard-container">
-              <CardItem data={x}/>
+            return <div key={x.id} className="singlecard-container">
+              <CardItem
+                data = {x}
+              />
             </div>
           })}
         </Masonry>
@@ -49,7 +46,17 @@ query fetchUsers($id: ID!) {
       title
     }
     items{
+      id
       title
+      description
+      itemowner {
+        id
+      }
+      imageurl
+      tags{
+        title
+      }
+      created
     }
   }
 }
