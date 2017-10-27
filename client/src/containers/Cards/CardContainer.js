@@ -46,13 +46,13 @@ const fetchItems = gql `
         email
       }
       created
-      available
       borrower {
         id
       }
     }
   }
 `
+
 
 // export default connect((store) => store.users, {getCardItems})(CardContainer)
 

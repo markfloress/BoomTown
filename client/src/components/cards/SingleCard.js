@@ -8,14 +8,14 @@ import moment from 'moment'
 
 class CardItem extends Component {
   render() {
-    const {available, borrower, created, description, imageurl, tags, itemowner, title} = this.props.data
+    const {available, borrower, created, description, imageurl, itemowner, title} = this.props.data
     console.log('with user', this.props.data)
     const createdDate = moment(created).fromNow()
 
     return (
         <Card className="single-card">
         <CardMedia 
-          overlay={ !available && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
+          overlay={ borrower && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
         >
           <img src={imageurl} alt="Item Image" />
         </CardMedia>
@@ -26,7 +26,7 @@ class CardItem extends Component {
           avatar={<Gravatar email={itemowner.email} style={{ borderRadius: "50%" }}/>}
           />
         </Link>
-        <CardTitle title={title} subtitle={tags.join(", ")} />
+        <CardTitle title={title} />           {/*   subtitle={tags.join(", ")}    */} 
         <CardText>
           {description} 
         </CardText>
