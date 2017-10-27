@@ -12,10 +12,6 @@ class Profile extends Component {
     if (this.props.data.loading) return null;    
     const singleUser = this.props.data.user
     const userItems = singleUser.items
-    // console.log("profile", userItems)    
-    // singleUser.items.map((x) => {
-    //   console.log('single', x)
-    // })
 
     return (
       <div className='cards-overview'>
@@ -23,10 +19,8 @@ class Profile extends Component {
         <Masonry>
           {userItems.map((x) => {
             return <div key={x.id} className="singlecard-container">
-              <CardItem
-                data = {x}
-              />
-            </div>
+                      <CardItem data = {x} />
+                    </div>
           })}
         </Masonry>
       </div>
