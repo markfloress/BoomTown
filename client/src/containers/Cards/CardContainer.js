@@ -39,7 +39,9 @@ const fetchItems = gql `
       title
       description
       imageurl
-      tags
+      tags{
+        title
+      }
       itemowner {
         id
         fullname

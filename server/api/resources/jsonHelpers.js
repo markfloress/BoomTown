@@ -6,11 +6,11 @@ const url = 'http://localhost:3001/'
 
 //// Root Helpers
 
-export const getItems = () => {
-  return fetch(`${url}items`)
-  .then(response => response.json())
-  .catch(errors => console.log(errors))
-}
+// export const getItems = () => {
+//   return fetch(`${url}items`)
+//   .then(response => response.json())
+//   .catch(errors => console.log(errors))
+// }
 
 export const getItem = (id) => {
   return fetch(`${url}items/${id}`)

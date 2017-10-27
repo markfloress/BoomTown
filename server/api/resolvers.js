@@ -2,7 +2,7 @@
 // const url = 'http://localhost:3001/'
 
 import { getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
-import { getItems } from './resources/pg-resources'
+import { getItems, getTags } from './resources/pg-resources'
 import {database} from '../index'
 
 const resolvers = {
@@ -26,6 +26,12 @@ const resolvers = {
       // return getUser(id)
       return context.loaders.singleUser.load(id)
     },
+
+    ////////
+
+    tags() {
+      return database.getTags()
+    }
   },
 
 
@@ -59,6 +65,9 @@ const resolvers = {
     borrower(item) {
       if (!item.borrower) return null      
       return itemBorrower(item)
+    },
+    tags(item){
+      return database.getTag(item.id);
     }
   },
 

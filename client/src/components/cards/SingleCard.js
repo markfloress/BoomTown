@@ -8,8 +8,8 @@ import moment from 'moment'
 
 class CardItem extends Component {
   render() {
-    const {available, borrower, created, description, imageurl, itemowner, title} = this.props.data
-    console.log('with user', this.props.data)
+    const {available, borrower, created, description, imageurl, itemowner, title, tags} = this.props.data
+    const tag = tags.map((tag) => tag.title)
     const createdDate = moment(created).fromNow()
 
     return (
@@ -26,7 +26,7 @@ class CardItem extends Component {
           avatar={<Gravatar email={itemowner.email} style={{ borderRadius: "50%" }}/>}
           />
         </Link>
-        <CardTitle title={title} />           {/*   subtitle={tags.join(", ")}    */} 
+        <CardTitle title={title} subtitle={tag.join(", ")}/>
         <CardText>
           {description} 
         </CardText>
