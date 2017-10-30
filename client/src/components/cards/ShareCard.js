@@ -13,7 +13,7 @@ class ShareCard extends Component {
     // const createdDate = moment(created).fromNow()
 
     return (
-      <div> share card dagdsgsdfg </div>
+      <p> lol </p>
       //   <Card className="single-card">
       //   <CardMedia 
       //     overlay={ !available && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}

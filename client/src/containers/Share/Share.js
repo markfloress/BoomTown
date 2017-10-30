@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { ShareCard } from '../../components/cards'
 import { ProgressBar } from '../../components/Share'
 import { graphql } from 'react-apollo'
+import './styles.css'
 
 
 class Share extends Component {
   render() {
     return (
-      <div>
+      <div className='share-container'>
         <div className='share-card'>
           <ShareCard />
         </div>

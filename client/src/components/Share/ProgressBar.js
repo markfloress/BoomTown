@@ -5,8 +5,10 @@ import {
   StepLabel,
   StepContent,
 } from 'material-ui/Stepper';
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import './styles.css';
  
 class ProgressBar extends Component {
   
@@ -36,7 +38,7 @@ class ProgressBar extends Component {
       return (
         <div style={{margin: '12px 0'}}>
           <RaisedButton
-            label={stepIndex === 2 ? 'Finish' : 'Next'}
+            label={stepIndex === 3 ? 'Confirm' : 'Next'}
             disableTouchRipple={true}
             disableFocusRipple={true}
             primary={true}
@@ -63,49 +65,49 @@ class ProgressBar extends Component {
         <div style={{maxWidth: 380, maxHeight: 400, margin: 'auto'}}>
           <Stepper activeStep={stepIndex} orientation="vertical">
             <Step>
-              <StepLabel>Select campaign settings</StepLabel>
+              <StepLabel>Add an Image</StepLabel>
               <StepContent>
                 <p>
-                  For each ad campaign that you create, you can control how much
-                  you're willing to spend on clicks and conversions, which networks
-                  and geographical locations you want your ads to show on, and more.
+                  We live in a visual culture. Upload an image of the item you're sharing.
                 </p>
+                <input name="shareFile" type="file"/>
                 {this.renderStepActions(0)}
               </StepContent>
             </Step>
             <Step>
-              <StepLabel>Create an ad group</StepLabel>
+              <StepLabel>Add a Title & Description</StepLabel>
               <StepContent>
-                <p>An ad group contains one or more ads which target a shared set of keywords.</p>
+                <p>Folks need to know what you're sharing. Give them a clue by adding a title and description.</p>
+                <TextField
+                  hintText="Title"
+                  floatingLabelText="Title"
+                />
+                <TextField
+                  hintText="Description"
+                  floatingLabelText="Description"
+                />
                 {this.renderStepActions(1)}
               </StepContent>
             </Step>
             <Step>
-              <StepLabel>Create an ad</StepLabel>
+              <StepLabel>Categorize Your Item</StepLabel>
               <StepContent>
                 <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
+                  To share an item, you'll add it to our list of categories. You can select multiple categories.
                 </p>
                 {this.renderStepActions(2)}
               </StepContent>
             </Step>
+            <Step>
+              <StepLabel>Confirm Things!</StepLabel>
+              <StepContent>
+                <p>
+                  Great! If you're happy with everything, tap the button.
+                </p>
+                {this.renderStepActions(3)}
+              </StepContent>
+            </Step>
           </Stepper>
-          {finished && (
-            <p style={{margin: '20px 0', textAlign: 'center'}}>
-              <a
-                href="#"
-                onClick={(event) => {
-                  event.preventDefault();
-                  this.setState({stepIndex: 0, finished: false});
-                }}
-              >
-                Click here
-              </a> to reset the example.
-            </p>
-          )}
         </div>
       );
     }

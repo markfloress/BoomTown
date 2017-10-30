@@ -1,0 +1,17 @@
+.share-container{
+  width: 100%;
+  border: 3px dashed magenta;
+  display: flex;
+}
+
+.share-card {
+  width: 50%;
+  border: 3px solid red;
+  margin: auto auto;  
+}
+
+.share-progress {
+  width: 50%;
+  border: 3px solid blue;
+  margin: auto auto;
+}
