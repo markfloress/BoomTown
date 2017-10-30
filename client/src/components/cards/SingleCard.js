@@ -9,7 +9,7 @@ import moment from 'moment'
 class CardItem extends Component {
   render() {
     const {available, borrower, created, description, imageurl, itemowner, title, tags} = this.props.data
-    const tag = tags.map((tag) => tag.title)
+    const tag = tags.map(tag => tag.title)
     const createdDate = moment(created).fromNow()
 
     return (

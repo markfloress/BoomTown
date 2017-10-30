@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
-import {CardItem} from '../../components/cards'
-
+import { ShareCard } from '../../components/cards'
+import { ProgressBar } from '../../components/Share'
+import { graphql } from 'react-apollo'
 
 
 class Share extends Component {
   render() {
     return (
-      <div className='share-container'>
+      <div>
         <div className='share-card'>
-          <CardItem />
+          <ShareCard />
         </div>
-
-
-        <div className='progress-bar'>
-          
-        </div>
-      </div>
+        <div className='share-progress'>
+          <ProgressBar />
+        </div>    
+      </div>  
     )
   }
 }
@@ -29,3 +28,5 @@ class Share extends Component {
 //     }
 //   })
 // })(Profile);
+
+export default Share;

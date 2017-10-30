@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 import { getCardItems } from '../../actions'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import CircularProgress from 'material-ui/CircularProgress';
 
 class Profile extends Component {
   render() {
-    if (this.props.data.loading) return null;    
+    if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const singleUser = this.props.data.user
     const userItems = singleUser.items
 

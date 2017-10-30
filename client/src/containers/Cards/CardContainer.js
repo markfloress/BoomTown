@@ -8,11 +8,13 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import { Link } from 'react-router-dom'
+import CircularProgress from 'material-ui/CircularProgress';
 
 
 class CardContainer extends Component {
   render () {
-    if (this.props.data.loading) return null
+    if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const itemList = this.props.data.items
     
    return (
@@ -23,9 +25,11 @@ class CardContainer extends Component {
           <CardItem data={x}/>
         </div>)}
       </Masonry>
-      <FloatingActionButton secondary={true} className='share-button'>
-        <ContentAdd />
-      </FloatingActionButton>
+      <Link to={`/share`}> 
+        <FloatingActionButton secondary={true} className='share-button'>
+          <ContentAdd />
+        </FloatingActionButton>
+      </Link>
     </div>
 
    )
