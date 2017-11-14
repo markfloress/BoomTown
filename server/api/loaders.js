@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
-import { ownedItems, borrowedItems, getItem } from './resources/jsonHelpers';
-import { getUser } from './resources/firebaseHelper'
+import { ownedItems, borrowedItems, getItem, getUser} from './resources/jsonHelpers';
+// import { getUser } from './resources/firebaseHelper'
 
 
 export default function() {

@@ -22,8 +22,7 @@ class ShareCard extends Component {
           <CardHeader
           title="{itemowner.fullname}"
           subtitle="{createdDate}"
-
-          />
+          />      
         </Link>
         <CardTitle/>
         <CardText>

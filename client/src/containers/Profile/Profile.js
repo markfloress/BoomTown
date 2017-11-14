@@ -9,6 +9,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 class Profile extends Component {
   render() {
+    console.log(this.props)
     if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const singleUser = this.props.data.user
     const userItems = singleUser.items

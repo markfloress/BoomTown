@@ -22,6 +22,10 @@ const Login = ({ login }) => (
         <div className="bottomLeft">
             <img src={bottomLeft} alt="City" />
         </div>
+
+
+
+        
         <div className="cardContainer">
             <Paper zDepth={5}>
                 <div className="formContainer">
@@ -39,6 +43,11 @@ const Login = ({ login }) => (
                 </div>
             </Paper>
         </div>
+
+
+
+
+
     </div>
 );
 
