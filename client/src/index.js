@@ -7,19 +7,17 @@ import { ApolloProvider } from 'react-apollo';
 import client from './config/apolloClient';
 import * as firebase from 'firebase'
 
-
 import './index.css';
 import muiTheme from './config/theme';
 
 import Layout from './components/Layout';
-import Login, { logout } from './containers/Login';
+import { login, logout } from './redux/loginReducer';
 import CardContainer from './containers/Cards';
 import { Profile } from './containers/Profile';
+import { Login } from './containers/Login';
 import { Share } from './containers/Share';
 import { CantBeFound } from './containers/CantBeFound';
-import configStore from './configStore'
-
-export const store = configStore()
+import store from './redux/store'
 
 const config = {
     apiKey: "AIzaSyDXiCv9TB9VvY0tOqr6wy2p7SIuK35ojVM",
@@ -32,9 +30,9 @@ const config = {
   firebase.initializeApp(config);
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-    //   store.dispatch(login(user));
+      store.dispatch(login(user));
     } else {
-    //   store.dispatch(logout());
+      store.dispatch(logout());
     }
   });
 
@@ -44,8 +42,8 @@ const Boomtown = () => (
         <Router>
             <Layout>
                 <Switch>
-                    {/* <Login /> */}
                     <Route exact path='/' component={CardContainer}/>
+                    <Route path='/login' component={Login}/>                    
                     <Route path='/profile/:id' component={Profile}/>
                     <Route path='/share' component={Share}/>
                     <Route component={CantBeFound}/>

@@ -23,8 +23,6 @@ const Login = ({ login }) => (
             <img src={bottomLeft} alt="City" />
         </div>
 
-
-
         
         <div className="cardContainer">
             <Paper zDepth={5}>
