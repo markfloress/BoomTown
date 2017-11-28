@@ -11,6 +11,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add'
 import { Link } from 'react-router-dom'
 import CircularProgress from 'material-ui/CircularProgress'
 import * as firebase from "firebase"
+import { Redirect } from "react-router-dom"
 
 
 class CardContainer extends Component {
@@ -18,34 +19,29 @@ class CardContainer extends Component {
     if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const itemList = this.props.data.items
 
-    var user = firebase.auth().currentUser;
-    
-    if (user) {
-      return user
+    if(this.props.auth && this.props.user){
+
+      return (
+        <div className='cards-overview'>
+         <Masonry>
+          {itemList.map((x) => 
+           <div key={x.id} className="singlecard-container">
+             <CardItem data={x}/>
+           </div>)}
+         </Masonry>
+         <Link to={`/share`}> 
+           <FloatingActionButton secondary={true} className='share-button'>
+             <ContentAdd />
+           </FloatingActionButton>
+         </Link>
+       </div>
+   
+      )
+
     } else {
-      // No user is signed in.
+      return <Redirect to="/login"/>
     }
 
-    console.log(this.props)
-    console.log(this.state)
-    console.log('user', user)
-
-   return (
-     <div className='cards-overview'>
-      <Masonry>
-       {itemList.map((x) => 
-        <div key={x.id} className="singlecard-container">
-          <CardItem data={x}/>
-        </div>)}
-      </Masonry>
-      <Link to={`/share`}> 
-        <FloatingActionButton secondary={true} className='share-button'>
-          <ContentAdd />
-        </FloatingActionButton>
-      </Link>
-    </div>
-
-   )
  }
 }
 
@@ -75,6 +71,13 @@ const fetchItems = gql `
 
 // export default connect((store) => store.users, {getCardItems})(CardContainer)
 
+function mapStateToProps(state){
+  return {
+    user: state.auth.user,
+    auth: state.auth.auth
+  }
+}
 
-export default graphql(fetchItems)(CardContainer)
+const fetchCardContainer =  graphql(fetchItems)(CardContainer)
+export default connect(mapStateToProps)(fetchCardContainer)
 // fetch movies will be the query function replacing render and return and input them to moviesList

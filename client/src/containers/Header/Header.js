@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { RightSide, LeftSide } from './index';
 import './styles.css';
+import { logout } from '../../redux/loginReducer'
+import * as firebase from "firebase"
+import { connect } from "react-redux";
 
 
 class Header extends Component {
@@ -12,6 +15,13 @@ class Header extends Component {
 
   handleChange = (event, index, values) => this.setState({values});
 
+  _logout = ()=>{
+    firebase.auth().signOut()
+    .then(() => {
+      this.props.dispatch(logout())
+    })
+   }
+
   render () {
     const {values, names} = this.state
 
@@ -19,10 +29,10 @@ class Header extends Component {
    return (
      <div className='NavBarStyle'>
       <LeftSide names={names} values={values} handleChange={this.handleChange}/>
-      <RightSide/>
+      <RightSide logout={this._logout}/>
     </div>
    )
  }
 }
 
-export default Header;
+export default connect(null)(Header)

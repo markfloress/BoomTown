@@ -1,22 +1,27 @@
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
-export const login = user => ({
+export const login = (user, auth) => ({
     type: LOGIN,
-    payload: user
+    payload: user, auth
 })
 
 export const logout = () => ({
     type: LOGOUT,
 })
 
+const intitialState= {
+    user:null,
+    auth:null
+}
+
 export default function(state = {}, action) {
     
     switch(action.type) {
         case LOGIN:
-            return { ...state, user: action.payload };
+            return { ...state, user: action.payload, auth: action.payload };
         case LOGOUT:
-            return { ...state }
+            return { ...state, user:null, auth:false }
         default:
             return state;
     }
