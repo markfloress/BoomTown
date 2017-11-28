@@ -1,3 +1,2 @@
-import ValidatedTextField from './ValidatedTextField';
-
-export default ValidatedTextField;
+export { default as ValidatedEmailField } from './ValidatedTextField';
+export { default as ValidatedPassField } from './ValidatedTextField';
