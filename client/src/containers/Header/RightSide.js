@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Link } from 'react-router-dom'
 
-
-
 export default class RightSide extends Component {
 
   render() {
@@ -12,7 +10,6 @@ export default class RightSide extends Component {
     };
 
     const {cuid} = this.props
-    console.log(cuid)
     
     return (
       <div className='raised-button' style={{ width: "50%" }}> 
