@@ -26,7 +26,6 @@ class LoginContainer extends Component {
   };
 
   render() {
-    console.log('auth',this.state)
 
     if(this.props.isAuthenticated){
       return <Redirect to="/"/>

@@ -9,14 +9,27 @@ import gql from 'graphql-tag'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import { Link } from 'react-router-dom'
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from 'material-ui/CircularProgress'
+import * as firebase from "firebase"
 
 
 class CardContainer extends Component {
   render () {
     if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const itemList = this.props.data.items
+
+    var user = firebase.auth().currentUser;
     
+    if (user) {
+      return user
+    } else {
+      // No user is signed in.
+    }
+
+    console.log(this.props)
+    console.log(this.state)
+    console.log('user', user)
+
    return (
      <div className='cards-overview'>
       <Masonry>
