@@ -24,15 +24,21 @@ class Header extends Component {
 
   render () {
     const {values, names} = this.state
-
+    const {currentUser} = this.props
 
    return (
      <div className='NavBarStyle'>
       <LeftSide names={names} values={values} handleChange={this.handleChange}/>
-      <RightSide logout={this._logout}/>
+      <RightSide logout={this._logout} cuid={currentUser ? currentUser.uid : false}/>
     </div>
    )
  }
 }
 
-export default connect(null)(Header)
+function mapStateToProps(state){
+  return {
+    currentUser: state.auth.user
+  }
+}
+
+export default connect(mapStateToProps)(Header)

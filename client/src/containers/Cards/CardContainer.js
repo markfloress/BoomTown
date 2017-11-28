@@ -21,7 +21,7 @@ class CardContainer extends Component {
 
     if(this.props.user){
 
-      console.log(this.props.user)
+      console.log(this.props.user.uid)
 
       return (
         <div className='cards-overview'>
@@ -69,9 +69,6 @@ const fetchItems = gql `
     }
   }
 `
-
-
-// export default connect((store) => store.users, {getCardItems})(CardContainer)
 
 function mapStateToProps(state){
   return {
