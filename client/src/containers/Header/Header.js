@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { RightSide, LeftSide } from './index';
 import './styles.css';
-import { logout } from '../../redux/loginReducer'
+import { logout } from '../../redux/modules/loginReducer'
 import * as firebase from "firebase"
 import { connect } from "react-redux";
 

@@ -3,9 +3,9 @@ import { reducer as formReducer } from 'redux-form'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 
-import cardReducer from '../reducers/cardReducer'
 import client from '../config/apolloClient'
-import loginReducer from './loginReducer'
+import cardReducer from './modules/cardReducer'
+import loginReducer from './modules/loginReducer'
 
 const rootReducer = combineReducers({
   apollo: client.reducer(),

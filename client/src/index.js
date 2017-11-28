@@ -17,7 +17,7 @@ import "./index.css";
 import muiTheme from "./config/theme";
 
 import Layout from "./components/Layout";
-import { login, logout } from "./redux/loginReducer";
+import { login, logout } from "./redux/modules/loginReducer";
 import CardContainer from "./containers/Cards";
 import { Profile } from "./containers/Profile";
 import LoginContainer from "./containers/Login";
@@ -36,6 +36,7 @@ const config = {
     messagingSenderId: "203089060458"
 };
 firebase.initializeApp(config);
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     store.dispatch(login(user));
