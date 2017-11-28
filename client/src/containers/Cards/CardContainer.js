@@ -19,7 +19,9 @@ class CardContainer extends Component {
     if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const itemList = this.props.data.items
 
-    if(this.props.auth && this.props.user){
+    if(this.props.user){
+
+      console.log(this.props.user)
 
       return (
         <div className='cards-overview'>
@@ -73,8 +75,7 @@ const fetchItems = gql `
 
 function mapStateToProps(state){
   return {
-    user: state.auth.user,
-    auth: state.auth.auth
+    user: state.auth.user
   }
 }
 
