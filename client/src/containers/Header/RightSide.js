@@ -14,7 +14,7 @@ export default class RightSide extends Component {
     return (
       <div className='raised-button' style={{ width: "50%" }}> 
          <Link to={`/profile/${cuid}`}><RaisedButton label="My Profile" primary style={style} /></Link>
-         <RaisedButton onClick={this.props.logout} label="Logout" primary buttonStyle={{ backgroundColor: 'gray' }}/>
+         <RaisedButton onClick={this.props.logout} label="Logout" href="/login" primary buttonStyle={{ backgroundColor: 'gray' }}/>
       </div>
     )
   }

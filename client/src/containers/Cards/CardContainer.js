@@ -18,8 +18,6 @@ class CardContainer extends Component {
     if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
     const itemList = this.props.data.items
 
-    if(this.props.user){
-
       return (
         <div className='cards-overview'>
          <Masonry>
@@ -36,11 +34,6 @@ class CardContainer extends Component {
        </div>
    
       )
-
-    } else {
-      return <Redirect to="/login"/>
-    }
-
  }
 }
 

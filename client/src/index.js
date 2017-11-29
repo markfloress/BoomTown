@@ -24,16 +24,17 @@ import LoginContainer from "./containers/Login";
 import { Share } from "./containers/Share";
 import { CantBeFound } from "./containers/CantBeFound";
 import initStore from "./redux/store";
+import { connect } from "react-redux";
 
 const store = initStore();
 
 const config = {
-    apiKey: "AIzaSyAxOWpW1i9TL6DMFtGCUy12DKmFl-ffDsQ",
-    authDomain: "boomtown-491c3.firebaseapp.com",
-    databaseURL: "https://boomtown-491c3.firebaseio.com",
-    projectId: "boomtown-491c3",
-    storageBucket: "boomtown-491c3.appspot.com",
-    messagingSenderId: "203089060458"
+  apiKey: "AIzaSyAxOWpW1i9TL6DMFtGCUy12DKmFl-ffDsQ",
+  authDomain: "boomtown-491c3.firebaseapp.com",
+  databaseURL: "https://boomtown-491c3.firebaseio.com",
+  projectId: "boomtown-491c3",
+  storageBucket: "boomtown-491c3.appspot.com",
+  messagingSenderId: "203089060458"
 };
 firebase.initializeApp(config);
 
@@ -45,16 +46,44 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const user = firebase.auth().currentUser;
+
+  console.log(user);
+  if (user !== null && user !== undefined) {
+    return (
+      <Route
+        {...rest}
+        location={rest.location}
+        render={props => <Component {...props} />}
+      />
+    );
+  } else {
+    return (
+      <Route
+        {...rest}
+        render={props => (
+          <Redirect
+            to={{ pathname: "/login", state: { from: props.location } }}
+          />
+        )}
+      />
+    );
+  }
+};
+
+
 const Boomtown = () => (
   <ApolloProvider store={store} client={client}>
     <MuiThemeProvider muiTheme={muiTheme}>
       <Router>
         <Layout>
           <Switch>
-            <Route exact path="/" component={CardContainer} />
+            {/* <Route exact path="/" component={CardContainer} /> */}
+            <PrivateRoute exact path="/" component={CardContainer} />
             <Route path="/login" component={LoginContainer} />
-            <Route path="/profile/:id" component={Profile} />
-            <Route path="/share" component={Share} />
+            <PrivateRoute path="/profile/:id" component={Profile} />
+            <PrivateRoute path="/share" component={Share} />
             <Route component={CantBeFound} />
           </Switch>
         </Layout>
@@ -62,6 +91,12 @@ const Boomtown = () => (
     </MuiThemeProvider>
   </ApolloProvider>
 );
+
+connect(state => {
+  return {
+    user: state.auth.user
+  };
+})(PrivateRoute);
 
 ReactDOM.render(<Boomtown />, document.getElementById("root"));
 registerServiceWorker();
