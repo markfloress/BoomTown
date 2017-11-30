@@ -1,8 +1,9 @@
 // import fetch from 'node-fetch'
 // const url = 'http://localhost:3001/'
 
-import { getItem, getUsers, getUser, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
-import { getItems, getTags } from './resources/pg-resources'
+import { getItem, ownedItems, borrowedItems, itemOwner, itemBorrower, createItem } from './resources/jsonHelpers'
+import { getUser } from './resources/firebaseHelper'
+// import { getItems, getTags } from './resources/pg-resources'
 import { database } from '../index'
 
 const resolvers = {

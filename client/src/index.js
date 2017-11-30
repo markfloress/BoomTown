@@ -49,7 +49,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = firebase.auth().currentUser;
 
-  console.log(user);
   if (user !== null && user !== undefined) {
     return (
       <Route
@@ -79,7 +78,6 @@ const Boomtown = () => (
       <Router>
         <Layout>
           <Switch>
-            {/* <Route exact path="/" component={CardContainer} /> */}
             <PrivateRoute exact path="/" component={CardContainer} />
             <Route path="/login" component={LoginContainer} />
             <PrivateRoute path="/profile/:id" component={Profile} />
