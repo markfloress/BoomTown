@@ -13,15 +13,44 @@ import * as firebase from "firebase"
 import { Redirect } from "react-router-dom"
 
 
+// var inventory = [
+//   {name: 'apples', quantity: 2},
+//   {name: 'bananas', quantity: 0},
+//   {name: 'cherries', quantity: 5}
+// ];
+
+// function filterTags(tags) { 
+//   return tags.title === this.props.tags;
+// }
+
+// console.log(inventory.find(findCherries));
+// { name: 'cherries', quantity: 5 }
+
+
+
 class CardContainer extends Component {
   render () {
-    if (this.props.data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
-    const itemList = this.props.data.items
+    const {data, tags} = this.props
+
+    if (data.loading) return <CircularProgress size={100} thickness={5} style={{margin: "auto auto"}}/>
+    const itemList = data.items
+    // console.log('hi',itemList.tag)
+
+
+    const newList = itemList.filter(item => {
+      if(item.tags.some(tag => tags.findIndex(singleTag => singleTag === tag.title) > -1)){
+        return item
+      }
+    })
+
+    console.log('filter',newList)
+    
+    const itemToDisplay = tags.length > 0 ? newList: itemList
 
       return (
         <div className='cards-overview'>
          <Masonry>
-          {itemList.map((x) => 
+          {itemToDisplay.map((x) => 
            <div key={x.id} className="singlecard-container">
              <CardItem data={x}/>
            </div>)}
@@ -62,7 +91,8 @@ const fetchItems = gql `
 
 function mapStateToProps(state){
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    tags: state.filterTag.filterTags
   }
 }
 

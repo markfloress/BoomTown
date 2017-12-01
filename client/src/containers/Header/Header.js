@@ -24,8 +24,6 @@ class Header extends Component {
 
   render () {
     const {currentUser, data} = this.props
-    console.log(this.props.filterTags)
-    console.log(this.props)
 
    return (
      <div className='NavBarStyle'>
