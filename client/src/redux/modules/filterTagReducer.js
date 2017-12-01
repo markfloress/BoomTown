@@ -1,13 +1,9 @@
-const getFilterTags = (data) => {
+export const getFilterTags = (data) => {
   return { type: 'GET_FILTERED_TAGS', data }
 }
 
 const initialState = {
-  filterTags: {}
-}
-
-const filterTags = () => {
-  dispatch(getFilterTags(data))
+  filterTags: []
 }
 
 export default (state= initialState, action) => {
@@ -17,5 +13,8 @@ export default (state= initialState, action) => {
         ...state,
         filterTags: action.data
       }
+
+    default: 
+      return state
   }
 }

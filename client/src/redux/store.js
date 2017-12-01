@@ -6,12 +6,14 @@ import thunk from 'redux-thunk'
 import client from '../config/apolloClient'
 import cardReducer from './modules/cardReducer'
 import loginReducer from './modules/loginReducer'
+import filterTagReducer from './modules/filterTagReducer'
 
 const rootReducer = combineReducers({
   apollo: client.reducer(),
   users: cardReducer,
   form: formReducer,
-  auth: loginReducer
+  auth: loginReducer,
+  filterTag: filterTagReducer
 }); 
 
 const store = (initialState) => {

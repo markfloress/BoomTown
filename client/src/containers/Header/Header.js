@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import { RightSide, LeftSide } from './index';
 import './styles.css';
 import { logout } from '../../redux/modules/loginReducer'
+import { getFilterTags } from '../../redux/modules/filterTagReducer'
 import * as firebase from "firebase"
 import { connect } from "react-redux";
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 
 
 class Header extends Component {
-  state = {
-    values: [],
-    names: ['Electronics', 'Household Items', 'Musical Instruments',
-    'Physical Media', 'Recreational Equipment', 'Sporting Goods', 'Tools']
+  handleChange = (event, index, values) => {
+    console.log(values);
+    this.props.dispatch(getFilterTags(values))
   };
-
-  handleChange = (event, index, values) => this.setState({values});
 
   _logout = ()=>{
     firebase.auth().signOut()
@@ -23,22 +23,35 @@ class Header extends Component {
    }
 
   render () {
-    const {values, names} = this.state
-    const {currentUser} = this.props
+    const {currentUser, data} = this.props
+    console.log(this.props.filterTags)
+    console.log(this.props)
 
    return (
      <div className='NavBarStyle'>
-      <LeftSide names={names} values={values} handleChange={this.handleChange}/>
+      <LeftSide names={!this.props.data.loading ? data.tags : []} values={this.props.filterTags} handleChange={this.handleChange}/>
       <RightSide logout={this._logout} cuid={currentUser ? currentUser.uid : false}/>
     </div>
    )
  }
 }
 
+const fetchTags = gql `
+  query fetchTags {
+    tags{
+      title,
+      tagid
+    }
+  }
+`
+
 function mapStateToProps(state){
   return {
-    currentUser: state.auth.user
+    currentUser: state.auth.user,
+    filterTags: state.filterTag.filterTags
   }
 }
 
-export default connect(mapStateToProps)(Header)
+const filteredTagsHeader = graphql(fetchTags)(Header)
+
+export default connect(mapStateToProps)(filteredTagsHeader)

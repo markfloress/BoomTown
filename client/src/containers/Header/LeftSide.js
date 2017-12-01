@@ -24,11 +24,11 @@ export default class LeftSide extends Component {
           style={{ width: 300}}>
             {names.map(name => (
                 <MenuItem
-                    key={name}
+                    key={name.tagId}
                     insetChildren
-                    checked={values && values.indexOf(name) > -1}
-                    value={name}
-                    primaryText={name}
+                    checked={values && values.indexOf(name.title) > -1}
+                    value={name.title}
+                    primaryText={name.title}
                 />
             ))}
       </SelectField>
