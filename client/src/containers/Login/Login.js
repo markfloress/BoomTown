@@ -51,8 +51,8 @@ const loginForm = reduxForm({
     form:'loginForm'
   })(Login)
 
-// Login.propTypes = {
-//     // login: PropTypes.func.isRequired
-// };
+Login.propTypes = {
+    login: PropTypes.func.isRequired
+};
 
 export default loginForm;

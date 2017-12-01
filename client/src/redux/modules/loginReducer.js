@@ -10,10 +10,6 @@ export const logout = () => ({
     type: LOGOUT,
 })
 
-const intitialState= {
-    user:null
-}
-
 export default function(state = {}, action) {
     
     switch(action.type) {

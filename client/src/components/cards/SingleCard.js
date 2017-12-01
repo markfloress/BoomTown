@@ -8,7 +8,7 @@ import moment from 'moment'
 
 class CardItem extends Component {
   render() {
-    const {available, borrower, created, description, imageurl, itemowner, title, tags} = this.props.data
+    const {borrower, created, description, imageurl, itemowner, title, tags} = this.props.data
     const tag = tags.map(tag => tag.title)
     const createdDate = moment(created).fromNow()
 
@@ -17,7 +17,7 @@ class CardItem extends Component {
         <CardMedia 
           overlay={ borrower && <CardTitle subtitle="Unavailable" style={{ textTransform: "uppercase" }}/>}
         >
-          <img src={imageurl} alt="Item Image" />
+          <img src={imageurl} alt="Item" />
         </CardMedia>
         <Link to={`/profile/${itemowner.id}`}>
           <CardHeader

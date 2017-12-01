@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Gravatar from 'react-gravatar';
 import './styles.css';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardHeader, CardTitle} from 'material-ui/Card';
 
 class ProfileCard extends Component {
   render() {

@@ -12,7 +12,7 @@ export default class LeftSide extends Component {
 
     return (
       <div style={{ display: "flex", width: "50%" }}> 
-       <Link to={`/`}><img src={logo} className='logoStyle'></img></Link>
+       <Link to={`/`}><img src={logo} className='logoStyle' alt='Boomtown logo'></img></Link>
 
 
        <SelectField

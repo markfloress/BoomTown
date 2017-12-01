@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { formValueSelector, reduxForm, getFormValues } from "redux-form";
+import { formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import * as firebase from "firebase";
 
-import PropTypes from "prop-types";
-
 import Login from "./Login";
-import store from "../../redux/store";
 
 class LoginContainer extends Component {
   static propTypes = {};
@@ -35,7 +32,7 @@ class LoginContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {
   const values = formValueSelector("loginForm");
   return {
     currentUser: values(state, 'email', 'password'),

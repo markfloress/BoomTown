@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Masonry from 'react-masonry-component';
 import { CardItem, ProfileCard } from '../../components/cards'
-import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import CircularProgress from 'material-ui/CircularProgress';
